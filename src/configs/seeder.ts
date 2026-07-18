@@ -15,8 +15,9 @@ export const seedDatabase = async (): Promise<void> => {
         VALUES (?, ?)
       `;
 
-      await pool.execute(userQuery, ["Admin", "admin"]);
-      await pool.execute(userQuery, ["Owner", "owner"]);
+      await pool.execute(userQuery, ["Default Admin", "admin"]);
+      await pool.execute(userQuery, ["Default Owner", "owner"]);
+      await pool.execute(userQuery, ["Default User", "user"]);
 
       console.log("✅ Default seed users injected successfully.");
     } else {
