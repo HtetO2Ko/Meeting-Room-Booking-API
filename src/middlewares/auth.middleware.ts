@@ -16,11 +16,12 @@ export const authenticate = async (
   const userId = req.headers["x-user-id"];
 
   if (!userId) {
-    return sendResponse(res, {
+    sendResponse(res, {
       statusCode: StatusCode.UNAUTHORIZED,
       success: false,
       message: "Authentication required. Pass 'x-user-id' in headers.",
     });
+    return;
   }
 
   try {
@@ -32,11 +33,12 @@ export const authenticate = async (
     const userRow = rows[0];
 
     if (!userRow) {
-      return sendResponse(res, {
+      sendResponse(res, {
         statusCode: StatusCode.UNAUTHORIZED,
         success: false,
         message: "User not found.",
       });
+      return;
     }
 
     req.user = {
@@ -46,26 +48,30 @@ export const authenticate = async (
     };
 
     next();
+    return;
   } catch (error) {
-    return sendResponse(res, {
+    sendResponse(res, {
       statusCode: StatusCode.INTERNAL_SERVER_ERROR,
       success: false,
       message: "Authentication error",
       error,
     });
+    return;
   }
 };
 
 export const authorize = (roles: ("admin" | "owner" | "user")[]) => {
   return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     if (!req.user || !roles.includes(req.user.role)) {
-      return sendResponse(res, {
+      sendResponse(res, {
         statusCode: StatusCode.FORBIDDEN,
         success: false,
         message:
           "Forbidden: You do not have permission to perform this action.",
       });
+      return;
     }
     next();
+    return;
   };
 };

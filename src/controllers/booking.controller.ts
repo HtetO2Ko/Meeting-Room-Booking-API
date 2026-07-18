@@ -43,7 +43,7 @@ export const createBooking = async (
   }
 };
 
-export const getBookings = async (req: AuthenticatedRequest, res: Response) => {
+export const getBookings = async (_req: AuthenticatedRequest, res: Response) => {
   try {
     const bookings = await bookingService.getAllBookings();
     return sendResponse(res, { data: bookings });
