@@ -18,13 +18,13 @@ router.use(authenticate);
 
 router.post(
   "/",
-  authorize(["admin", "owner", "user"]),
+  authorize(["owner", "user"]),
   validateCreateBooking,
   createBooking,
 );
 router.get("/", authorize(["admin", "owner", "user"]), getBookings);
-router.get("/grouped", authorize(["admin", "owner"]), getBookingsGrouped);
-router.get("/summary", authorize(["admin", "owner"]), getSummary);
+router.get("/grouped", authorize(["owner"]), getBookingsGrouped);
+router.get("/summary", authorize(["owner"]), getSummary);
 
 router.delete(
   "/:id",

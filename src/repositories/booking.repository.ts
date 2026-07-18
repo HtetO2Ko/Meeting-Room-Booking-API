@@ -31,14 +31,6 @@ export class BookingRepository {
     return rows as IBooking[];
   }
 
-  async findByUserId(userId: number): Promise<IBooking[]> {
-    const [rows] = await pool.query<RowDataPacket[]>(
-      "SELECT * FROM booking WHERE userId = ? ORDER BY startTime ASC",
-      [userId],
-    );
-    return rows as IBooking[];
-  }
-
   async findById(id: number): Promise<IBooking | null> {
     const [rows] = await pool.query<RowDataPacket[]>(
       "SELECT * FROM booking WHERE id = ?",

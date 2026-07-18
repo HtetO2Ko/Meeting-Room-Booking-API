@@ -21,6 +21,6 @@ export const sendResponse = (
     success,
     message,
     data,
-    error,
+    error: process.env.NODE_ENV === "production" ? null : error,
   });
 };

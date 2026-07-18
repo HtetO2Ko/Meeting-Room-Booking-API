@@ -32,11 +32,7 @@ export class BookingService {
     return { id, userId, startTime: mysqlStartTime, endTime: mysqlEndTime };
   }
 
-  async getAllBookings(requestingUser: { id: number; role: string }) {
-    if (requestingUser.role === "user") {
-      return await bookingRepository.findByUserId(requestingUser.id);
-    }
-
+  async getAllBookings() {
     return await bookingRepository.findAll();
   }
 
@@ -62,21 +58,8 @@ export class BookingService {
     return await bookingRepository.getSummary();
   }
 
-  async getBookingsGroupedByUser(requestingUser: { id: number; role: string }) {
-    let rawBookings: any[] = [];
-
-    if (requestingUser.role === "user") {
-      const userBookings = await bookingRepository.findByUserId(
-        requestingUser.id,
-      );
-      rawBookings = userBookings.map((b) => ({
-        ...b,
-        bookingId: b.id,
-        userName: "Your Bookings",
-      }));
-    } else {
-      rawBookings = await bookingRepository.findAllWithUserNames();
-    }
+  async getBookingsGroupedByUser() {
+    const rawBookings = await bookingRepository.findAllWithUserNames();
 
     const grouped = rawBookings.reduce((acc: GroupedData, curr) => {
       const { userId, userName, bookingId, startTime, endTime } = curr;

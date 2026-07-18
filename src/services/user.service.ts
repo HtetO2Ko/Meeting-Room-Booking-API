@@ -5,7 +5,6 @@ const userRepository = new UserRepository();
 
 export class UserService {
   async createUser(name: string, role: UserRole) {
-    if (!name || !role) throw new Error("Name and role are required");
     const userId = await userRepository.create(name, role);
     return { id: userId, name, role };
   }
