@@ -5,6 +5,11 @@ This project demonstrates connection pooling, clean structural layer segregation
 
 ---
 
+## 🌐 Live Deployment Access
+* **API Base URL:** `https://meeting-room-booking-api-production.up.railway.app`
+
+---
+
 ## 🚀 Features
 
 - Express.js REST API
