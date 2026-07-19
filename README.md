@@ -6,7 +6,16 @@ This project demonstrates connection pooling, clean structural layer segregation
 ---
 
 ## 🌐 Live Deployment Access
-* **API Base URL:** `https://meeting-room-booking-api-production.up.railway.app`
+
+**Application URL:** `https://meeting-room-booking-six-pi.vercel.app`
+
+**Backend API:** `https://meeting-room-booking-api-production.up.railway.app`
+
+---
+
+## 🔗 Frontend Repository
+
+https://github.com/HtetO2Ko/Meeting-Room-Booking
 
 ---
 
